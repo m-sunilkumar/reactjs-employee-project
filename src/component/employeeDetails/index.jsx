@@ -38,7 +38,10 @@ const EmployeeDetails = (props) => {
               <img alt="profile-pic" src={itm.profilePicUrl} />
             </td>
             <td>
-              <Link to={`/modify/edit/${itm.id}`}>Edit</Link>/
+              <Link to={{ pathname: `/modify/edit/${itm.id}`, state: itm }}>
+                Edit
+              </Link>
+              /
               <span
                 style={{ cursor: "pointer" }}
                 onClick={() => deleteHandler(itm.id)}
