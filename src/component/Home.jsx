@@ -12,7 +12,7 @@ class Home extends Component {
     const { location } = this.props;
     let newData = [...employeeData];
     if (location.state) {
-      newData = new Set([...employeeData, location.state]);
+      newData = new Set([...employeeData, ...location.state]);
     }
 
     console.log("newData", [...newData]);

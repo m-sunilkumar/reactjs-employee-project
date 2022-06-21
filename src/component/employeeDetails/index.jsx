@@ -7,7 +7,7 @@ import "./employeeDetails.css";
 const EmployeeDetails = (props) => {
   const { data } = props;
   const [employeeData, setEmployeeData] = useState([...data]);
-  console.log("datatat", data);
+  console.log("datatat", employeeData);
   const deleteHandler = (id) => {
     let updatedData = deleteEmployeeRecord(id);
     setEmployeeData(updatedData);

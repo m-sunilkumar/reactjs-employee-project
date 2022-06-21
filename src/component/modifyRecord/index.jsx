@@ -44,7 +44,7 @@ export default function ModifyRecord(props) {
   const updateEmployeerecord = () => {
     if (window.location.href.includes("new")) {
       addEmployeeRecord(record);
-      history.push("/", record);
+      history.push("/", [record]);
       return;
     } else if (window.location.href.includes("edit")) {
       let updatedEmployeeData = editEmployeeRecord(match.params.id, record);
