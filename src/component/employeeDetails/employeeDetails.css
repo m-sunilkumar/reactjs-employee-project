@@ -1,9 +1,15 @@
-.employee-list-wrap{
-    margin: 1em auto;
-    width: 80%;
+.employee-list-wrap {
+  margin: 1em auto;
+  width: 80%;
 }
 
-table, th, td {
-    border:1px solid #000;
-    padding: 1rem;
-  }
+table,
+th,
+td {
+  border: 1px solid #000;
+  padding: 1rem;
+}
+table tr td img {
+  height: 10em;
+  width: 100%;
+}

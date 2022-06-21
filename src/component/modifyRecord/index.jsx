@@ -2,47 +2,41 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { addEmployeeRecord, editEmployeeRecord } from "../../mockData/utils";
+import { usePrevious } from "../../hooks/index";
 // import { history } from "react-router-dom";
 import "./modifyRecord.css";
 
 export default function ModifyRecord(props) {
   const [record, setRecord] = useState({});
-
+  const prevRecord = usePrevious(record);
   const { match } = props;
 
   const history = useHistory();
 
   const handleInputChange = (e, type) => {
-    let obj = {};
-
     switch (type) {
       case "id":
-        obj[type] = e.target.value;
-        setRecord(obj);
+        setRecord({ ...prevRecord, [type]: e.target.value });
         break;
       case "firstName":
-        obj[type] = e.target.value;
-        setRecord(obj);
+        setRecord({ ...prevRecord, [type]: e.target.value });
         break;
       case "lastName":
-        obj[type] = e.target.value;
-        setRecord(obj);
+        setRecord({ ...prevRecord, [type]: e.target.value });
         break;
       case "experience":
-        obj[type] = e.target.value;
-        setRecord(obj);
+        setRecord({ ...prevRecord, [type]: e.target.value });
         break;
       case "designation":
-        obj[type] = e.target.value;
-        setRecord(obj);
+        setRecord({ ...prevRecord, [type]: e.target.value });
         break;
       case "dob":
-        obj[type] = e.target.value;
-        setRecord(obj);
+        setRecord({ ...prevRecord, [type]: e.target.value });
         break;
       case "profilePicUrl":
-        obj[type] = e.target.value;
-        setRecord(obj);
+        console.log("eeee", e, e.target.files);
+        let imgUrl=URL.createObjectURL(e.target.files[0])
+        setRecord({ ...prevRecord, [type]: imgUrl});
       default:
         break;
     }
@@ -50,10 +44,11 @@ export default function ModifyRecord(props) {
   const updateEmployeerecord = () => {
     if (window.location.href.includes("new")) {
       addEmployeeRecord(record);
+      history.push("/", record);
       return;
     } else if (window.location.href.includes("edit")) {
-      editEmployeeRecord(match.params.id, record);
-      history.push("/", { state: record });
+      let updatedEmployeeData = editEmployeeRecord(match.params.id, record);
+      history.push("/", updatedEmployeeData);
     }
   };
   return (
@@ -61,7 +56,7 @@ export default function ModifyRecord(props) {
       <h2>Enter Employee details</h2>
 
       <input
-        alt="first-name"
+        alt="id"
         type="text"
         placeholder="Enter id"
         onChange={(e) => handleInputChange(e, "id")}
@@ -90,7 +85,12 @@ export default function ModifyRecord(props) {
         placeholder="Enter designation"
         onChange={(e) => handleInputChange(e, "designation")}
       />
-      <input alt="exp" type="text" />
+      <input
+        alt="exp"
+        type="text"
+        placeholder="Enter Years of Experience"
+        onChange={(e) => handleInputChange(e, "experience")}
+      />
       <input
         alt="profile-pic"
         type="file"

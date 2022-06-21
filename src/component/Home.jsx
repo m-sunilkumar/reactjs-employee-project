@@ -8,12 +8,17 @@ class Home extends Component {
   }
 
   render() {
-    console.log("props", props);
+    console.log("props", this.props);
     const { location } = this.props;
-    const newData= new Set([...employeeData,location.state])
+    let newData = [...employeeData];
+    if (location.state) {
+      newData = new Set([...employeeData, location.state]);
+    }
+
+    console.log("newData", [...newData]);
     return (
       <main>
-        <EmployeeDetails data={employeeData} />
+        <EmployeeDetails data={[...newData]} />
       </main>
     );
   }

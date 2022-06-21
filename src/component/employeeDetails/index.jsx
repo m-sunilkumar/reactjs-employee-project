@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { deleteEmployeeRecord } from "../../mockData/utils";
 
@@ -6,9 +6,11 @@ import "./employeeDetails.css";
 
 const EmployeeDetails = (props) => {
   const { data } = props;
-
+  const [employeeData, setEmployeeData] = useState([...data]);
+  console.log("datatat", data);
   const deleteHandler = (id) => {
-    deleteEmployeeRecord(id);
+    let updatedData = deleteEmployeeRecord(id);
+    setEmployeeData(updatedData);
   };
 
   return (
@@ -25,7 +27,7 @@ const EmployeeDetails = (props) => {
           <th>action</th>
         </tr>
 
-        {data.map((itm, i) => (
+        {employeeData.map((itm, i) => (
           <tr>
             <td>{itm.firstName}</td>
             <td>{itm.lastName}</td>
@@ -37,7 +39,12 @@ const EmployeeDetails = (props) => {
             </td>
             <td>
               <Link to={`/modify/edit/${itm.id}`}>Edit</Link>/
-              <span onClick={() => deleteHandler(itm.id)}>Delete</span>
+              <span
+                style={{ cursor: "pointer" }}
+                onClick={() => deleteHandler(itm.id)}
+              >
+                Delete
+              </span>
             </td>
           </tr>
         ))}

@@ -1,5 +1,5 @@
 //main employeeData
-export const employeeData = [
+export var employeeData = [
   {
     id: "1",
     firstName: "sunil",
@@ -21,8 +21,6 @@ export const addEmployeeRecord = (details) => {
 
 //delete employee from the list
 export const deleteEmployeeRecord = (id) => {
-  let temp = [];
-
   //return employee record other than deleted record
   if (id) {
     const filterData = employeeData.filter((item, i) => item.id !== id);
@@ -42,4 +40,5 @@ export const editEmployeeRecord = (id, details) => {
     });
     return employeeData;
   }
+  return employeeData;
 };

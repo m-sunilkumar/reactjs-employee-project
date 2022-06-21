@@ -1,7 +1,12 @@
 .input-wrap {
   width: 60%;
   margin: 1em auto;
+  display: flex;
+  flex-direction: column;
 }
 .input-wrap h2 {
   text-align: center;
+}
+.input-wrap input {
+  margin: 1rem 0;
 }
